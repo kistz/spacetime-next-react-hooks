@@ -1,22 +1,33 @@
-"use client";  
+"use client";
 
-import { useEffect } from 'react';  
+import { StrictMode, useEffect } from 'react';
 import {
- getDbConnection,
- disconnectDbConnection
-} from "@/lib/spacetimedb/connection";  
+  getDbConnectionBuilder,
+  disconnectDbConnection
+} from "@/lib/spacetimedb/connection";
 
-const SpacetimeDBProvider = ({ children }: { children: React.ReactNode }) => {  
-  useEffect(() => {  
-    getDbConnection();  
+import { SpacetimeDBProvider as BuiltinSpacetimeDBProvider, useSpacetimeDB } from 'spacetimedb/react';
+import { DbConnection } from '@/lib/tourney-manager';
 
-    return () => {  
-      disconnectDbConnection();  
+const SpacetimeDBProvider = ({ children }: { children: React.ReactNode }) => {
+  /* useEffect(() => {
+    getDbConnectionBuilder();
+
+    return () => {
+      disconnectDbConnection();
     };
-  }, []);  
+  }, []);
+ */
+  const builder = DbConnection.builder()
+    .withUri('http://localhost:1234')
+    .withModuleName('tm-tourney-manager');
 
-  // It doesn't need to render anything itself, just pass children through.  
-  return <>{children}</>;  
-};  
+
+
+
+  // It doesn't need to render anything itself, just pass children through.
+  return <StrictMode><BuiltinSpacetimeDBProvider connectionBuilder={builder}>{children}</BuiltinSpacetimeDBProvider></StrictMode>;
+};
 
 export default SpacetimeDBProvider;
+

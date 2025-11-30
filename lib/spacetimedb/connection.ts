@@ -4,10 +4,11 @@ import { DbConnection } from '@/lib/tourney-manager';
 import { onConnect, onConnectError, onDisconnect } from './connectionHandlers';
 import { cleanupConnectionListener } from './connectionEvents';
 import { cleanupSubscriptionListener } from './subscriptionEvents';
+import { DbConnectionBuilder } from 'spacetimedb';
 
-let singletonConnection: DbConnection | null = null;
+//let singletonConnection: DbConnection | null = null;
 
-export const getDbConnection = (): DbConnection => {
+export const getDbConnectionBuilder = (): DbConnectionBuilder => {
   const isSSR = typeof window === 'undefined';
   if (isSSR) {
     throw new Error('Cannot use SpacetimeDB on the server.');
@@ -18,7 +19,13 @@ export const getDbConnection = (): DbConnection => {
   }
 
   singletonConnection = buildDbConnection()
-  return singletonConnection;
+  return DbConnection.builder()
+    .withUri('http://localhost:1234')
+    .withModuleName('tm-tourney-manager')
+    .withToken(getAuthToken())
+    .onConnect(onConnect)
+    .onDisconnect(onDisconnect)
+    .onConnectError(onConnectError);
 };
 
 const buildDbConnection = () => {

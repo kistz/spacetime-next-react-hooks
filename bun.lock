@@ -8,7 +8,6 @@
         "react": "19.2.0",
         "react-dom": "19.2.0",
         "spacetimedb": "1.10.0",
-        "tm-tourney-manager-api-ts": "0.0.12",
       },
       "devDependencies": {
         "@tailwindcss/postcss": "^4",
@@ -802,8 +801,6 @@
     "tapable": ["tapable@2.3.0", "", {}, "sha512-g9ljZiwki/LfxmQADO3dEY1CbpmXT5Hm2fJ+QaGKwSXUylMybePR7/67YW7jOrrvjEgL1Fmz5kzyAjWVWLlucg=="],
 
     "tinyglobby": ["tinyglobby@0.2.15", "", { "dependencies": { "fdir": "^6.5.0", "picomatch": "^4.0.3" } }, "sha512-j2Zq4NyQYG5XMST4cbs02Ak8iJUdxRM0XI5QyxXuZOzKOINmWurp3smXu3y5wDcJrptwpSjgXHzIQxR0omXljQ=="],
-
-    "tm-tourney-manager-api-ts": ["tm-tourney-manager-api-ts@0.0.12", "", { "dependencies": { "spacetimedb": "1.10.0" }, "peerDependencies": { "typescript": "^5" } }, "sha512-DjivYcIL5cRijITkXf01AMay/zD35MGQfZUf0BVAi1KGXO+QXR0YSwOPTL1MVB/HvNURK+/Lryuj66FQ8CAHOA=="],
 
     "to-regex-range": ["to-regex-range@5.0.1", "", { "dependencies": { "is-number": "^7.0.0" } }, "sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ=="],
 
